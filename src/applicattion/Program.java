@@ -1,6 +1,10 @@
 package applicattion;
 
+import java.util.Date;
+import java.util.Locale;
+
 import model.entites.Department;
+import model.entites.Seller;
 
 public class Program {
 
@@ -8,9 +12,12 @@ public class Program {
 		// Nome Jorge Paulo
 		// Data: 14/03/2022
 		
+		Locale.setDefault(Locale.US);
 		Department dep = new Department(1, "Books");
 		
-		System.out.println(dep);
+		Seller seller = new Seller(21, "Bob", "bob@gmail.com", new Date(), 3000.0, dep);
+		
+		System.out.println(seller);
 
 	}
 
