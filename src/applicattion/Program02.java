@@ -20,9 +20,14 @@ public class Program02 {
 		}
 		
 		System.out.println("\n==== TESTE 02 Lista Departamento por ID ====");
-		Department department = departmentDao.findById(8);
+		Department department = departmentDao.findById(1);
 		System.out.println(department);
 		
+		
+		System.out.println("\n==== TESTE 03 Inserindo Departament ====");
+		Department dep = new Department(null,"Music");
+		departmentDao.insert(dep);
+		System.out.println("Registro cadastrado com sucesso.");
 
 	}
 
