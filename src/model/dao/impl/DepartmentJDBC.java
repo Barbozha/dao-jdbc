@@ -1,6 +1,7 @@
 package model.dao.impl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -40,8 +41,32 @@ public class DepartmentJDBC implements DepartmentDao{
 
 	@Override
 	public Department findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = conn.prepareStatement("SELECT Id,Name as Nome from department "
+					+"WHERE Id = ?");
+			
+			st.setInt(1, id);
+			rs = st.executeQuery();
+			if(rs.next()) {
+				Department dep = new Department();
+				dep.setId(rs.getInt("ID"));
+				dep.setName(rs.getString("Nome"));
+				return dep;
+			}else {
+				throw new DbException("Registro NÃO localizado.");
+			}
+			
+			
+		}catch(SQLException e) {
+			throw new DbException("Error !"+e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
+		
 	}
 
 	@Override

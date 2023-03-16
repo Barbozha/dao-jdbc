@@ -18,6 +18,11 @@ public class Program02 {
 		for(Department obj : list) {
 			System.out.println(obj);
 		}
+		
+		System.out.println("\n==== TESTE 02 Lista Departamento por ID ====");
+		Department department = departmentDao.findById(8);
+		System.out.println(department);
+		
 
 	}
 
