@@ -25,9 +25,15 @@ public class Program02 {
 		
 		
 		System.out.println("\n==== TESTE 03 Inserindo Departament ====");
-		Department dep = new Department(null,"Music");
+		Department dep = new Department(null,"Wear");
 		departmentDao.insert(dep);
 		System.out.println("Registro cadastrado com sucesso.");
+		
+		System.out.println("\n==== TESTE 04 Update Departament ====");
+		dep = departmentDao.findById(7);
+		dep.setName("Sport");
+		departmentDao.update(dep);
+		System.out.println("Update Realizado com Sucesso!");
 
 	}
 
