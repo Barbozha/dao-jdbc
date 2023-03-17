@@ -64,12 +64,33 @@ public class DepartmentJDBC implements DepartmentDao{
 		}catch(SQLException e) {
 			throw new DbException("Error! "+e.getMessage());
 		}
+		finally {
+			DB.closeStatement(st);
+		}
 		
 	}
 
 	@Override
-	public void deleteById(Department obj) {
-		// TODO Auto-generated method stub
+	public void deleteById(Integer id) {
+		PreparedStatement st = null;
+		
+		try {
+			st = conn.prepareStatement("DELETE from Department "
+					+"WHERE id = ?");
+			st.setInt(1, id);
+			
+			int linha = st.executeUpdate();
+			
+			if(linha == 0) {
+				throw new DbException("Error ! Registro não localizado" );
+			}
+			
+		}catch(SQLException e) {
+			throw new DbException("Error! "+e.getMessage());
+		}
+		finally{
+			DB.closeStatement(st);
+		}
 		
 	}
 
